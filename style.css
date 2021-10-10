@@ -1,0 +1,275 @@
+/* Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* Create variables */
+:root {
+    --container-bg-color: rgb(255, 255, 255);
+    --left-bg-color: rgba(65, 65, 65, 0.6);
+    --left-button-hover-color: rgb(255, 255, 255);
+    --right-bg-color: rgba(1, 7, 58, 0.4);
+    --right-button-hover-color: rgb(255, 255, 255);
+    --hover-width: 53%;
+    --other-width: 47%;
+    --speed: 600ms;
+    
+}
+
+html, body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    height: 100%;
+    /* Prevent horizontal scrolling: */
+    overflow-x: hidden;
+}
+
+.logo{
+    width: 150px;
+    height: 90px;
+    color: #fff;
+    background-image: url('img/i24_Logo.svg');
+    background-size: 100%;
+    /* margin: 20px 20px; */
+    display: block;
+    position: absolute;
+    right: 2%;
+    bottom: 3%;
+    transform: translateX(-1%);
+    z-index: 3;
+}
+
+h1 {
+    font-size: 4rem;
+    color: #fff;
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    transform: translateX(-50%);
+    /* Keep h1 in the same line in any case: */
+    white-space: nowrap;
+}
+
+p {
+    font-size: 2rem;
+    font-weight: 400;
+    color: #fff;
+    position: absolute;
+    left: 50%;
+    top: 32%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+}
+
+
+.button {
+    display: block;
+    position: absolute;
+    /* position: relative; */
+    left: 50%;
+    top: 42%;
+    padding-top: 1.3rem;
+    padding-bottom: 1.3rem;
+    width: 15rem;
+    text-align: center;
+    color: #fff;
+    border: #fff solid 0.2rem;
+    border-radius: 10px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-decoration: none;
+    transform: translateX(-50%);
+    transition: ease-in-out 0.3s;
+}
+
+/* Left button ( during hover - stays white) */
+.split.left .button:hover {
+    color: var(--left-button-hover-color);
+    border-color: var(--left-button-hover-color);
+}
+
+/* Creating the red line inside the left button */
+.split.left .button::before{
+    /* The 'content: '' ' line is needed for the '::before' to work: */
+    content: '';
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    right: 50%;
+    bottom: 25%;
+    opacity: 0;
+    background-color: rgb(248, 118, 118);
+    border-radius: 5px;
+}
+
+/* Animating the red line inside the left button during hover */
+.split.left .button:hover::before{
+    left: 10%;
+    right: 10%;
+    opacity: 1;
+    z-index: -1;
+    transition: 0.5s all ease;
+}
+
+/* Right button ( during hover - stays white) */
+.split.right .button:hover {
+    color: var(--right-button-hover-color);
+    border-color: var(--right-button-hover-color);
+}
+
+/* Creating the red line inside the right button */
+.split.right .button::before{
+    content: '';
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    right: 50%;
+    bottom: 25%;
+    opacity: 0;
+    background-color: rgb(248, 118, 118);
+    border-radius: 5px;
+}
+
+/* Animating the red line inside the right button during hover */
+.split.right .button:hover::before{
+    left: 10%;
+    right: 10%;
+    opacity: 1;
+    z-index: -1;
+    transition: 0.5s all ease;
+}
+
+/* Container bg color is set to white */
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: var(--container-bg-color);
+}
+
+/* Size of each half of the screen */
+.split {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    /* Prevent any scrolling: */
+    overflow: hidden;
+}
+
+/* Left side's background image */
+.split.left {
+    left: -4px;
+    background: url('img/jess-bailey-q10VITrVYUM-unsplash.jpg') center center no-repeat;
+    background-size: cover;
+}
+
+/* Adding the tint to the left side of the screen */
+.split.left::before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: var(--left-bg-color);
+}
+
+/* Right side's background image */
+.split.right {
+    right: 0;
+    background: url('img/jeshoots-com-pUAM5hPaCRI-unsplash.jpg') center center no-repeat;
+    background-size: cover;
+}
+
+/* Adding the tint to the right side of the screen */
+.split.right::before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: var(--right-bg-color);
+}
+
+/* Adding the transition ease uppon hovering over each side of the screen */
+.split.left, .split.right, .split.left::before, .split.right::before {
+    transition: var(--speed) all ease-in-out;
+}
+
+/* When hovering over the left side - left side gets bigger */
+/* This class was created by JS */
+.hover-left .left {
+    width: var(--hover-width);
+}
+
+/* When hovering over the left side - right side gets smaller */
+/* This class was created by JS */
+.hover-left .right {
+    width: var(--other-width);
+}
+
+/* When hovering over the left side - bring right side's ** tint ** to the front */
+/* This effect wil 'turn off'  the texts on the right side*/
+.hover-left .right:before {
+   z-index: 2;
+}
+
+/* When hovering over the right side - right side gets bigger */
+/* This class was created by JS */
+.hover-right .right {
+    width: var(--hover-width);
+}
+
+/* When hovering over the right side - left side gets smaller */
+/* This class was created by JS */
+.hover-right .left {
+    width: var(--other-width);
+}
+
+/* When hovering over the right side - bring left side's ** tint ** to the front */
+/* This effect wil 'turn off'  the texts on the left side*/
+.hover-right .left:before {
+   z-index: 2;
+}
+
+/* Responsiveness (height) */
+@media(max-height: 850px) {
+  h1 {
+    position: absolute;
+    left: 50%;
+    top: 20%;
+}
+
+p {
+    position: absolute;
+    left: 50%;
+    top: 35%;
+}
+
+.button {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+  }
+}
+
+
+/* Responsiveness (width) */
+@media screen and (max-width: 768px) {
+  h1{
+    text-align: center;
+    font-size: 2rem;
+  }
+
+  .button {
+    width: 12rem;
+  }
+  
+  p{
+    text-align: center;
+    margin-bottom: -200px;
+  }
+
+  .container{
+    flex-direction: column;
+  }
+
+}
